@@ -170,10 +170,14 @@ app.delete('/api/content/:id', async (req, res) => {
     }
 });
 
-// Frontend fallback so /royale<number> serves index.html
-app.get(/^\/royale\d+$/, (req, res) => {
+// Frontend fallbacks so /others and /others/royale<number> serve index.html
+app.get('/others', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
+app.get(/^\/others\/royale\d+$/, (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
+
 
 // Health check
 
@@ -186,3 +190,4 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 
 });
+
