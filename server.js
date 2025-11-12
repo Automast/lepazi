@@ -9,7 +9,15 @@ const PORT = process.env.PORT || 3000;
 const ADMIN_PASSWORD = 'dimehook';
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: [
+        'http://localhost:3000',
+        'http://127.0.0.1:3000',
+        'https://lepazi.com',  // Replace with your actual Netlify URL
+        /\.netlify\.app$/  // This allows all netlify.app domains
+    ],
+    credentials: true
+}));
 app.use(express.json());
 
 // Serve the frontend statically from ../frontend
@@ -176,4 +184,5 @@ app.get('/health', (req, res) => {
 // Start server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+
 });
