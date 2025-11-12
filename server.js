@@ -174,10 +174,9 @@ app.delete('/api/content/:id', async (req, res) => {
 app.get('/others', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
-app.get(/^\/others\/royale\d+$/, (req, res) => {
+app.get('/others/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
-
 
 // Health check
 
@@ -190,4 +189,5 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 
 });
+
 
